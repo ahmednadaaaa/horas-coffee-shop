@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+
+{% load static %}
+
+{% block content%}
+
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header mb-5 position-relative overlay-bottom">
+        <div class="d-flex flex-column align-items-center justify-content-center pt-0 pt-lg-5" style="min-height: 400px">
+            <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase">All orders</h1>
+            <div class="d-inline-flex mb-lg-5">
+                <p class="m-0 text-white"><a class="text-white" href="">Home</a></p>
+                <p class="m-0 text-white px-2">/</p>
+                <p class="m-0 text-white">all orders</p>
+            </div>
+        </div>
+    </div>
+
+
+  {% if not request.user.is_authenticated or request.user.is_anonymous %}
+    <h5 class="alert alert-warning">
+        you must be
+        <a href="{% url 'login' %} " class="text-dark">Login</a>
+    </h5>
+    {% elif all_orders %}
+      {%if all_orders.count > 0 %}
+
+           <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Order Number</th>
+              <th scope="col">Date & time</th>
+              <th scope="col">Items Count</th>
+              <th scope="col">Total</th>
+              <th scope="col">Is finished</th>
+
+            </tr>
+          </thead>
+          <tbody>
+      {% endif %}
+      {% for order in all_orders %}
+
+    <tr>
+          <td>
+             {{ order.id }}
+          </td>
+          <td>
+              {{ order.order_date }}
+          </td>
+          <td>
+                {{ order.items_count }}
+          </td>
+          <td>
+                {{ order.total }}
+          </td>
+          <td>
+              {% if order.is_finished == True %}
+              YES
+              {% else %}
+              NO
+              {% endif %}
+          </td>
+    </tr>
+        {% endfor %}
+      {% if all_orders.count > 0 %}
+          </tbody>
+           </table>
+      {% endif %}
+     {% else %}
+
+    <h4  class="alert alert-warning" >
+        No order here
+    </h4>
+
+    {% endif %}
+
+{% endblock content %}

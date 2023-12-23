@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In</title>
+  <!-- Add Bootstrap CSS link here -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <div class="container">
+
+  <div class="container">
+    <div class="row justify-content-center mt-5">
+      <div class="col-md-6">
+        <div class="card shadow">
+          <div class="card-body">
+            <h3 class="card-title text-center">Sign In</h3>
+            <form method="POST" action="{% url 'login' %}">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+              </div>
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="remember" name="remember">
+                <label class="form-check-label" for="remember">Remember me</label>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            </form>
+            <p class="text-center mt-3">Don't have an account? <a href="{% url 'accounts:signup' %}">Sign up</a></p>
+            <p class="text-center mt-1"><a href="{% url 'password_reset' %}">Forgot password?</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+{% endblock content %}

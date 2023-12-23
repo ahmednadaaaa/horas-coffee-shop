@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header mb-5 position-relative overlay-bottom">
+        <div class="d-flex flex-column align-items-center justify-content-center pt-0 pt-lg-5" style="min-height: 400px">
+            <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase">Sign Up</h1>
+            <div class="d-inline-flex mb-lg-5">
+                <p class="m-0 text-white"><a class="text-white" href="">Home</a></p>
+                <p class="m-0 text-white px-2">/</p>
+                <p class="m-0 text-white">sign up</p>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0 text-center">Sign Up</h3>
+                </div>
+                <div class="card-body">
+
+            <form method="post" action="">
+
+              {% csrf_token %}
+               {{form}}
+              <button class="btn btn-lg btn-block btn-primary" style="background-color: #dd4b39;"
+              type="submit">sign up</button>
+
+
+            </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/main.js' %}"></script>
+
+{% endblock content %}

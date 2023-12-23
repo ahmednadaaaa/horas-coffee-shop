@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header mb-5 position-relative overlay-bottom">
+        <div class="d-flex flex-column align-items-center justify-content-center pt-0 pt-lg-5" style="min-height: 400px">
+            <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase">single product</h1>
+            <div class="d-inline-flex mb-lg-5">
+                <p class="m-0 text-white"><a class="text-white" href="">Home</a></p>
+                <p class="m-0 text-white px-2">/</p>
+                <p class="m-0 text-white">single </p>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+  <!-- single-product.html -->
+
+
+    <!-- ***** Product Area Starts ***** -->
+<!-- ***** Product Area Starts ***** -->
+<section class="section" id="product" style="margin-top: 50px; margin-bottom: 50px;">
+    <div class="container">
+         <div class="productContainer">
+        <div class="thumbnail">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="left-images">
+
+                    <img src="{{pro.photo.url}}" style="width:300px;height:300px"  alt="{{pro.name}}">
+
+                </div>
+            </div>
+        </div>
+
+            <div class="col-lg-4">
+                <div class="right-content">
+                    <h4>{{pro.name}} </h4>
+                    <span class="price">${{pro.price}}</span>
+
+                    <div class="quote">
+                        <i class="fa fa-quote-left"></i>
+                        <p>{{pro.description}}</p>
+                    </div>
+                    <div class="quantity-content">
+                        <div class="left-content">
+                            <h6>No. of Orders</h6>
+                        </div>
+                        <div class="right-content">
+                            <div class="quantity buttons_added">
+                                <input type="button" value="-" class="minus">
+                                <input type="number" step="1" min="1" max="" name="quantity" value="1" title="Qty"
+                                    class="input-text qty text" size="4" pattern="" inputmode="">
+                                <input type="button" value="+" class="plus">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="total">
+                        <h4></h4>
+            <form method="GET" action="{% url 'add_to_cart' %}">
+
+            <button type="button"  data-toggle="modal" data-target="#exampleModal">Add to Cart</button></div>
+
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Select Quantity</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <label for="imputQty">Quantity</label>
+          <input type="text" value="1" class="form-control" id="imputQty" name="qty" required>
+          <input type="hidden" name="pro_id" value="{{ pro.id }}">
+          <input type="hidden" name="price" value="{{ pro.price }}">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button  class="btn btn-warning">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+            <a
+                    href="{% url 'accounts:product_favorite' pro_id=pro.id %}"
+            >favorite </a></div>
+
+                </div>
+
+            </div>
+        </div>
+             </div>
+    </form>
+    </div>
+</section>
+<!-- ***** Product Area Ends ***** -->
+
+  {% endblock content %}
